@@ -1,49 +1,120 @@
 <div class="container">
   <div class="row pt-3">
-      <div class="col-6">
-        <h4>Testing Portal</h4>
-      </div>
-      <div class="col-6 text-end">
-        <button  type="button" class="btn btn-outline-success" (click)="openModel()" data-bs-toggle="modal" data-bs-target="#myModal">Add New User</button>
-      </div>
+    <div class="col-6">
+      <h4>Testing Portal</h4>
+    </div>
+    <div class="col-6 text-end">
+      <button type="button" class="btn btn-outline-success" (click)="openModel()" data-bs-toggle="modal"
+        data-bs-target="#myModal">Add New User</button>
+    </div>
   </div>
+  @if(userList.length !== 0){
   <div class="row">
+    @for (item of userList; track $index){
+
     <div class="col-3">
       <div class="card">
         <div class="card-header">
           <div class="row">
             <div class="col-6">
-              Nombre de usuario
+              {{item.nombre}}
             </div>
             <div class="col-6 text-end">
-              Contraseña
+              {{item.contrasenia}}
             </div>
           </div>
         </div>
         <div class="card-body">
-          <p>Rol</p>
-          <p>Fecha Alta</p>
-          <p>Imagen Perfil</p>
+          <p>{{item.rol}}</p>
+          <p>{{item.fecha_alta}}</p>
+          <p>{{item.imagen_perfil}}</p>
+          <p>{{item.correo}}</p>
         </div>
         <div class="card-footer text-center">
-          <p>Correo</p>
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-sm btn-primary" (click)="editUser(item)">Editar</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-sm btn-danger" (click)="deleteUser(item)">Eliminar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    }
+
   </div>
+
+  }@else {
+    <div class="row">
+      <div class="col-12 p-4 text-center">
+        <p>No Record Found. Create New Record.</p>
+      </div>
+    </div>
+  }
 </div>
 <div class="modal" id="myModal" #myModal>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Crear nuevo usuario</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close" (click)="closeModel()"></button>
       </div>
       <div class="modal-body">
-        Modal body..
+        <div class="row">
+          <div class="col-6">
+            <label for="nombre">Nombre</label>
+            <input type="text" [(ngModel)]="userObj.nombre" class="form-control-sm" placeholder="Nombre" name="nombre"
+              id="nombre">
+          </div>
+          <div class="col-6">
+            <label for="correo">Correo</label>
+            <input type="email" [(ngModel)]="userObj.correo" class="form-control-sm" placeholder="Correo" name="correo"
+              id="correo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="contrasenia">Contraseña</label>
+            <input type="password" [(ngModel)]="userObj.contrasenia" class="form-control-sm" placeholder="Contraseña"
+              name="contrasenia" id="contrasenia">
+          </div>
+          <div class="col-6">
+            <label for="confirma-contrasenia">Confirmar contraseña</label>
+            <input type="password" class="form-control-sm" placeholder="Confirmar contraseña"
+              name="confirma-contrasenia" id="confirma-contrasenia">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="rol">Rol a seleccionar</label>
+            <select name="rol" id="rol" class="form-select" [(ngModel)]="userObj.rol">
+              <option selected>Selecciona un rol</option>
+              <option value="Administrador">Administrador</option>
+              <option value="Recepcionista">Recepcionista</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="fecha">Fecha alta</label>
+            <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]="userObj.fecha_alta">
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="imagen">Elige una Imagen:</label>
+            <input type="file" class="form-control-sm" name="imagen" id="imagen" accept="image/png, image/jpeg">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="closeModel()">Close</button>
+        @if(userObj.id ==0){
+          <button type="button" class="btn btn-primary" (click)="saveUser()">Guardar Usuario</button>
+        }@else {
+          <button type="button" class="btn btn-success" (click)="updateUser()">Editar Usuario</button>
+        }
       </div>
 
     </div>
