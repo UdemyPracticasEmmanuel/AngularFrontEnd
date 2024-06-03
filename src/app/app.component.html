@@ -5,7 +5,7 @@
     </div>
     <div class="col-6 text-end">
       <button type="button" class="btn btn-outline-success" (click)="openModel()" data-bs-toggle="modal"
-        data-bs-target="#myModal">Add New User</button>
+        data-bs-target="#myModal">Agregar nuevo usuario</button>
     </div>
   </div>
   @if(userList.length !== 0){
@@ -27,7 +27,6 @@
         <div class="card-body">
           <p>{{item.rol}}</p>
           <p>{{item.fecha_alta}}</p>
-          <p>{{item.imagen_perfil}}</p>
           <p>{{item.correo}}</p>
         </div>
         <div class="card-footer text-center">
@@ -62,33 +61,43 @@
         <button type="button" class="btn-close" (click)="closeModel()"></button>
       </div>
       <div class="modal-body">
+        <div *ngIf="this.emptyFields" class="row">
+          <div class="col-6">
+            <label class="red-alert">Los campos con * son obligatorios</label>
+          </div>
+        </div>
         <div class="row">
           <div class="col-6">
-            <label for="nombre">Nombre</label>
+            <label for="nombre">Nombre *</label>
             <input type="text" [(ngModel)]="userObj.nombre" class="form-control-sm" placeholder="Nombre" name="nombre"
               id="nombre">
           </div>
           <div class="col-6">
-            <label for="correo">Correo</label>
+            <label for="correo">Correo *</label>
             <input type="email" [(ngModel)]="userObj.correo" class="form-control-sm" placeholder="Correo" name="correo"
               id="correo">
           </div>
         </div>
         <div class="row">
           <div class="col-6">
-            <label for="contrasenia">Contraseña</label>
+            <label for="contrasenia">Contraseña *</label>
             <input type="password" [(ngModel)]="userObj.contrasenia" class="form-control-sm" placeholder="Contraseña"
-              name="contrasenia" id="contrasenia">
+              name="contrasenia" id="contrasenia" maxlength="16">
           </div>
           <div class="col-6">
-            <label for="confirma-contrasenia">Confirmar contraseña</label>
-            <input type="password" class="form-control-sm" placeholder="Confirmar contraseña"
-              name="confirma-contrasenia" id="confirma-contrasenia">
+            <label for="confirma-contrasenia">Confirmar contraseña *</label>
+            <input type="password" [(ngModel)]="comprobarPass" class="form-control-sm" placeholder="Confirmar contraseña"
+              name="confirma-contrasenia" id="confirma-contrasenia" maxlength="16">
+          </div>
+        </div>
+        <div *ngIf="!this.matchedPass" class="row">
+          <div class="col-6">
+            <label class="red-alert">Las contraseñas no coinciden</label>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
-            <label for="rol">Rol a seleccionar</label>
+            <label for="rol">Rol a seleccionar *</label>
             <select name="rol" id="rol" class="form-select" [(ngModel)]="userObj.rol">
               <option selected>Selecciona un rol</option>
               <option value="Administrador">Administrador</option>
@@ -96,15 +105,20 @@
             </select>
           </div>
           <div class="col-6">
-            <label for="fecha">Fecha alta</label>
+            <label for="fecha">Fecha alta *</label>
             <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]="userObj.fecha_alta">
 
           </div>
         </div>
         <div class="row">
           <div class="col-6">
-            <label for="imagen">Elige una Imagen:</label>
-            <input type="file" class="form-control-sm" name="imagen" id="imagen" accept="image/png, image/jpeg">
+            <label for="imagen">Elige una Imagen *</label>
+            <input type="file" class="form-control-sm" name="imagen" id="imagen" (change)="onFileChange($event)" accept="image/png, image/jpeg" >
+          </div>
+        </div>
+        <div *ngIf="this.imagePath != null" class="row">
+          <div class="col-6">
+            <img [src]="this.imagePath" width="150" height="150"/>
           </div>
         </div>
       </div>
@@ -113,7 +127,7 @@
         @if(userObj.id ==0){
           <button type="button" class="btn btn-primary" (click)="saveUser()">Guardar Usuario</button>
         }@else {
-          <button type="button" class="btn btn-success" (click)="updateUser()">Editar Usuario</button>
+          <button type="button" class="btn btn-success" (click)="updateUser()">Actualizar Usuario</button>
         }
       </div>
 
