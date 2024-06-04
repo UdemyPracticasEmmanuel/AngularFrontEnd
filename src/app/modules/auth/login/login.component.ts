@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '@modules/auth/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgIf, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, NgIf, JsonPipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
