@@ -5,14 +5,14 @@
     </div>
     <div class="col-6 text-end">
       <button type="button" class="btn btn-outline-success" (click)="openModel()" data-bs-toggle="modal"
-        data-bs-target="#myModal">Agregar nuevo usuario</button>
+        data-bs-target="#myModal">Crear usuarios</button>
     </div>
   </div>
   @if(userList.length !== 0){
   <div class="row">
     @for (item of userList; track $index){
 
-    <div class="col-3">
+    <div class="col-3"> 
       <div class="card">
         <div class="card-header">
           <div class="row">
@@ -57,7 +57,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Crear nuevo usuario</h4>
+        <h4 class="modal-title">Registro de usuarios</h4>
         <button type="button" class="btn-close" (click)="closeModel()"></button>
       </div>
       <div class="modal-body">

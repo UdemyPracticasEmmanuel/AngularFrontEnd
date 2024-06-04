@@ -48,11 +48,16 @@ export class AppComponent implements OnInit {
   closeModel() {
     this.userObj = new Usuario();
     this.base64String = '';
+    this.matchedPass = true;
+    this.emptyFields = false;
+    this.imagePath = null;
+    this.showImage = false;
+    this.comprobarPass ='';
+
     if (this.model != null) {
       this.model.nativeElement.style.display = 'none';
     }
-    this.matchedPass = true;
-    this.emptyFields = false;
+    
   }
   validarCampos(campos: Usuario): boolean{
 
@@ -61,7 +66,7 @@ export class AppComponent implements OnInit {
       campos.contrasenia == '' ||
       campos.rol == '' ||
       campos.fecha_alta == '' ||
-      this.base64String == ''){
+      campos.imagen_perfil == ''){
         return true;
       }
     return false;
@@ -69,7 +74,8 @@ export class AppComponent implements OnInit {
   saveUser() {
     debugger;
     const isLocalPresent = localStorage.getItem("angular17crud");
-
+    
+    this.userObj.imagen_perfil = this.base64String;
     this.matchedPass = this.empatarContrasenias(this.userObj.contrasenia, this.comprobarPass);
     this.emptyFields = this.validarCampos(this.userObj);
 
@@ -78,7 +84,6 @@ export class AppComponent implements OnInit {
         if (isLocalPresent != null) {
           const oldArray = JSON.parse(isLocalPresent);
           this.userObj.id = oldArray.length + 1;
-          this.userObj.imagen_perfil = this.base64String;
           oldArray.push(this.userObj);
           this.userList = oldArray;
           localStorage.setItem('angular17crud', JSON.stringify(oldArray));
@@ -87,7 +92,6 @@ export class AppComponent implements OnInit {
           const newArr = [];
           newArr.push(this.userObj);
           this.userObj.id = 1;
-          this.userObj.imagen_perfil = this.base64String;
           this.userList = newArr;
           localStorage.setItem('angular17crud', JSON.stringify(newArr));
         }
@@ -103,6 +107,7 @@ export class AppComponent implements OnInit {
     this.openModel();
   }
   updateUser(){
+    debugger;
     const currentRecord = this.userList.find(m => m.id == this.userObj.id);
 
     this.matchedPass = this.empatarContrasenias(this.userObj.contrasenia, this.comprobarPass);
