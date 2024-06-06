@@ -27,6 +27,9 @@
       "@modules/*": [
         "src/app/modules/*"
       ],
+      "@models/*": [
+        "src/app/models/*"
+      ],
     },
     "lib": [
       "ES2022",

@@ -11,11 +11,11 @@
                 <label for="password">Contraseña</label>
                 <input formControlName="password" formControlName="password" type="password" placeholder="Contraseña" class="form-input">
             </div>
-            <!-- <div *ngIf="errorSession">
+            <div *ngIf="errorSession">
                 Ocurrio un error con tu email o password
-            </div>-->
+            </div>
             <div class="form-action">
-                <button [disabled] ="formLogin.invalid" class="login social-btn">Iniciar sesión</button>
+                <button class="login social-btn" (click)="sendLogin()">Iniciar sesión</button>
             </div> 
         </form>
         <!-- <div>

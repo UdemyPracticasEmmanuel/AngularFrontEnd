@@ -3,11 +3,13 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Usuario } from '@models/users';
+import { NavmenuComponent } from '@modules/navmenu/navmenu.component';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, NgIf],
+  imports: [RouterOutlet, FormsModule, NgIf, NavmenuComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css'
 })
@@ -155,26 +157,5 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-}
-
-export class Usuario {
-  id: number;
-  nombre: string;
-  correo: string;
-  contrasenia: string;
-  rol: string;
-  fecha_alta: string;
-  imagen_perfil: string;
-
-  constructor() {
-    this.id = 0;
-    this.nombre = '';
-    this.correo = '';
-    this.contrasenia = '';
-    this.rol = '';
-    this.fecha_alta = ''; //formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
-    this.imagen_perfil = '';
-
-  }
 }
 
