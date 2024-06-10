@@ -19,17 +19,17 @@
           <div class="card-header">
             <div class="row">
               <div class="col-6">
-                {{item.nombre}}
+                {{item.name}}
               </div>
               <div class="col-6 text-end">
-                {{item.contrasenia}}
+                {{item.password}}
               </div>
             </div>
           </div>
           <div class="card-body">
-            <p>{{item.rol}}</p>
-            <p>{{item.fecha_alta}}</p>
-            <p>{{item.correo}}</p>
+            <p>{{item.role}}</p>
+            <p>{{item.register_date}}</p>
+            <p>{{item.email}}</p>
           </div>
           <div class="card-footer text-center">
             <div class="row">
@@ -50,7 +50,7 @@
     }@else {
       <div class="row">
         <div class="col-12 p-4 text-center">
-          <p>No Record Found. Create New Record.</p>
+          <p>No se encontraron registros. Crea un nuevo registro.</p>
         </div>
       </div>
     }
@@ -70,52 +70,52 @@
           </div>
           <div class="row">
             <div class="col-6">
-              <label for="nombre">Nombre *</label>
-              <input type="text" [(ngModel)]="userObj.nombre" class="form-control-sm" placeholder="Nombre" name="nombre"
-                id="nombre">
+              <label for="name">Nombre *</label>
+              <input type="text" [(ngModel)]="userObj.name" class="form-control-sm" placeholder="Name" name="name"
+                id="name">
             </div>
             <div class="col-6">
-              <label for="correo">Correo *</label>
-              <input type="email" [(ngModel)]="userObj.correo" class="form-control-sm" placeholder="Correo" name="correo"
-                id="correo">
+              <label for="email">Email *</label>
+              <input type="email" [(ngModel)]="userObj.email" class="form-control-sm" placeholder="Email" name="email"
+                id="email">
             </div>
           </div>
           <div class="row">
             <div class="col-6">
-              <label for="contrasenia">Contraseña *</label>
-              <input type="password" [(ngModel)]="userObj.contrasenia" class="form-control-sm" placeholder="Contraseña"
-                name="contrasenia" id="contrasenia" maxlength="16">
+              <label for="password">Contraseña *</label>
+              <input type="password" [(ngModel)]="userObj.password" class="form-control-sm" placeholder="Password"
+                name="password" id="password" maxlength="16">
             </div>
             <div class="col-6">
-              <label for="confirma-contrasenia">Confirmar contraseña *</label>
-              <input type="password" [(ngModel)]="comprobarPass" class="form-control-sm" placeholder="Confirmar contraseña"
-                name="confirma-contrasenia" id="confirma-contrasenia" maxlength="16">
+              <label for="confirm-password">Confirma la contraseña *</label>
+              <input type="password" [(ngModel)]="comprobarPass" class="form-control-sm" placeholder="Confirm password"
+                name="confirm-password" id="confirm-password" maxlength="16">
             </div>
           </div>
           <div *ngIf="!this.matchedPass" class="row">
             <div class="col-6">
-              <label class="red-alert">Las contraseñas no coinciden</label>
+              <label class="red-alert">Contraseñas no coinciden</label>
             </div>
           </div>
           <div class="row">
             <div class="col-6">
-              <label for="rol">Rol a seleccionar *</label>
-              <select name="rol" id="rol" class="form-select" [(ngModel)]="userObj.rol">
-                <option selected>Selecciona un rol</option>
+              <label for="role">Selecciona un Rol *</label>
+              <select name="role" id="role" class="form-select" [(ngModel)]="userObj.role">
+                <option selected>Select a role</option>
                 <option value="Administrador">Administrador</option>
                 <option value="Recepcionista">Recepcionista</option>
               </select>
             </div>
             <div class="col-6">
-              <label for="fecha">Fecha alta *</label>
-              <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]="userObj.fecha_alta">
+              <label for="register_date">Fecha de registro *</label>
+              <input type="date" class="form-control" name="register_date" id="register_date" [(ngModel)]="userObj.register_date">
   
             </div>
           </div>
           <div class="row">
             <div class="col-6">
-              <label for="imagen">Elige una Imagen *</label>
-              <input type="file" class="form-control-sm" name="imagen" id="imagen" (change)="onFileChange($event)" accept="image/png, image/jpeg" >
+              <label for="image">Elige una Imagen *</label>
+              <input type="file" class="form-control-sm" name="image" id="image" (change)="onFileChange($event)" accept="image/png, image/jpeg" >
             </div>
           </div>
           <div *ngIf="this.imagePath != null" class="row">
@@ -125,7 +125,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" (click)="closeModel()">Close</button>
+          <button type="button" class="btn btn-danger" (click)="closeModel()">Cerrar</button>
           @if(userObj.id ==0){
             <button type="button" class="btn btn-primary" (click)="saveUser()">Guardar Usuario</button>
           }@else {

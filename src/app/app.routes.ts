@@ -9,7 +9,8 @@ export const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('./modules/auth/auth-routes').then(m => m.authRoutes) //Importación dinámica
     },
-    { path: '', redirectTo: 'login', pathMatch: 'full'},
+    
+    { path: '', redirectTo: 'login', pathMatch: 'full'}, //Establecer condicion para que redirija al login o dashboard
     {
         path: 'home', 
         component: HomeComponent

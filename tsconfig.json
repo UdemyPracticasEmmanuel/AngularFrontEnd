@@ -30,7 +30,14 @@
       "@models/*": [
         "src/app/models/*"
       ],
+      "@routes/*": [
+        "src/app/routes/*"
+      ],
+      "@controller/*": [
+        "src/app/controller/*"
+      ],
     },
+    "allowJs": true,
     "lib": [
       "ES2022",
       "dom"

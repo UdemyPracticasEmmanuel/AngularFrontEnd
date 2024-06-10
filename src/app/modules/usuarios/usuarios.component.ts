@@ -63,12 +63,12 @@ export class UsuariosComponent implements OnInit {
   }
   validarCampos(campos: Usuario): boolean{
 
-    if(campos.nombre == '' ||
-      campos.correo == '' ||
-      campos.contrasenia == '' ||
-      campos.rol == '' ||
-      campos.fecha_alta == '' ||
-      campos.imagen_perfil == ''){
+    if(campos.name == '' ||
+      campos.email == '' ||
+      campos.password == '' ||
+      campos.role == '' ||
+      campos.register_date == '' ||
+      campos.profile_image == ''){
         return true;
       }
     return false;
@@ -77,8 +77,8 @@ export class UsuariosComponent implements OnInit {
     debugger;
     const isLocalPresent = localStorage.getItem("angular17crud");
     
-    this.userObj.imagen_perfil = this.base64String;
-    this.matchedPass = this.empatarContrasenias(this.userObj.contrasenia, this.comprobarPass);
+    this.userObj.profile_image = this.base64String;
+    this.matchedPass = this.empatarContrasenias(this.userObj.password, this.comprobarPass);
     this.emptyFields = this.validarCampos(this.userObj);
 
     if(!this.emptyFields){
@@ -105,25 +105,25 @@ export class UsuariosComponent implements OnInit {
   }
   editUser(item: Usuario) {
     this.userObj = item;
-    this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(item.imagen_perfil);
+    this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(item.profile_image);
     this.openModel();
   }
   updateUser(){
     debugger;
     const currentRecord = this.userList.find(m => m.id == this.userObj.id);
 
-    this.matchedPass = this.empatarContrasenias(this.userObj.contrasenia, this.comprobarPass);
+    this.matchedPass = this.empatarContrasenias(this.userObj.password, this.comprobarPass);
     this.emptyFields = this.validarCampos(this.userObj);
 
     if(!this.emptyFields){
       if(this.matchedPass){
         if(currentRecord != undefined){
-          currentRecord.nombre = this.userObj.nombre;
-          currentRecord.correo = this.userObj.correo;
-          currentRecord.contrasenia = this.userObj.contrasenia;
-          currentRecord.rol= this.userObj.rol;
-          currentRecord.fecha_alta= this.userObj.fecha_alta;
-          currentRecord.imagen_perfil= this.userObj.imagen_perfil;
+          currentRecord.name = this.userObj.name;
+          currentRecord.email = this.userObj.email;
+          currentRecord.password = this.userObj.password;
+          currentRecord.role= this.userObj.role;
+          currentRecord.register_date= this.userObj.register_date;
+          currentRecord.profile_image= this.userObj.profile_image;
     
         };
         localStorage.setItem('angular17crud', JSON.stringify(this.userList));

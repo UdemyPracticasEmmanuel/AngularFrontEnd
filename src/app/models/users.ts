@@ -1,20 +1,20 @@
 export class Usuario {
     id: number;
-    nombre: string;
-    correo: string;
-    contrasenia: string;
-    rol: string;
-    fecha_alta: string;
-    imagen_perfil: string;
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+    register_date: string;
+    profile_image: string;
   
     constructor() {
       this.id = 0;
-      this.nombre = '';
-      this.correo = '';
-      this.contrasenia = '';
-      this.rol = '';
-      this.fecha_alta = '';
-      this.imagen_perfil = '';
+      this.name = '';
+      this.email = '';
+      this.password = '';
+      this.role = '';
+      this.register_date = '';
+      this.profile_image = '';
   
     }
   }
