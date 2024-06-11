@@ -10,7 +10,7 @@ Para el presente proyecto, se han instalado las siguientes librerías:
 Además se actualizó Angular a la versión 18 y se eligió la opción de migrar:
   ng update @angular/cli @angular/core
 
-# How to use
+## How to use
 El software almacena en localstorage los usuarios y contraseñas creados, por lo cuál es posible loguearse con cualquiera de ellos. 
 Para el primer loguin utiliza las credenciales:
 usuario: admin@test.com
