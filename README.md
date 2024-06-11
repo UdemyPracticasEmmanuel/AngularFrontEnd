@@ -1,6 +1,21 @@
 # AngularTest
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
+Para el presente proyecto, se han instalado las siguientes librerías:
+  npm install @coreui/angular@5
+  npm install @coreui/coreui
+  npm install bootstrap
+  npm install --save font-awesome angular-font-awesome
+  npm install jquery
+Además se actualizó Angular a la versión 18 y se eligió la opción de migrar:
+  ng update @angular/cli @angular/core
+
+# How to use
+El software almacena en localstorage los usuarios y contraseñas creados, por lo cuál es posible loguearse con cualquiera de ellos. 
+Para el primer loguin utiliza las credenciales:
+usuario: admin@test.com
+contraseña: 12345678
+
 
 ## Development server
 
